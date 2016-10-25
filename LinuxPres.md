@@ -115,8 +115,82 @@ ls -l
 
 ```
 
+The `-l` is an option given to the `ls` command, telling it to list files in *long* format, i.e. with more information. These options (flags) are associated with many different commands and options.
+
+Changing file permissions
+=======
+
+The **chmod** function sets permissions for a specified file.
+
+- There are 3 permissions (read, write, execute)
+    - encoded as 3-digit binary converted to integer, for example:
+        - (*read* and *write* and *execute*) = (111) = 7
+        - (*not read* and *write* and *not execute*) =  (010) = 2
+- There are 3 user categories that can have permissions (owner, group, all)
+    - Smash the 3 permission integers together, for example:
+        - 777 means everyone can read, write, and execute
+        - 744 means owner can read, write, and execute, but everyone else can only read.
+
+Making files--3 ways
+=====
+
+1. You can make an empty file using the `touch` command. For example, `touch foo.csv` would make an empty file with the name "foo.csv"
+
+2. You can also create a file and fill it at the same time using the `>` symbol. `echo hi there > hi.txt` creates a file called `hi.txt` with the text "hi there"
+
+3. Use a built-in command-line text editor. **vi** is one, but it's not easy to use. **nano** is much easier. `nano foo.csv` allows you to edit the file "foo.csv".
+
+Task
+=====
+
+- Create a file called changeprompt.sh
+- change the permissions to make it executable
+- Using `nano`, put the following text in the file:
 
 
+```bash
+#! /bin/bash
+export OLDPS=$PS1
+export PS1="GRiD_"$OLDPS
+```
+
+- Execute the file by running `sh changeprompt.sh`
+
+Your command prompt should now have "GRiD_" at the beginning.
+
+- Change it back by running `export PS1=$OLDPS`
+
+Other file operations
+======
+
+- **cp** copy a file:   `cp [file name] [copy name]`
+- **mv** move a file:   `mv [file name] [copy name]`
+- **rm** remove a file: ` rm [file name]`
+- **mkdir** make a new directory: ` mkdir [directory name]`
+
+Probing files, folders, and contents
+=======
+
+- **find** to look for files with a particular name 
+- **grep** to look for text that matches a pattern
+- **head** to print first few lines of a file
+- **tail** same, for last few lines
+- **cat** to print the entire file contents
+
+The pipe operator
+=======
+
+You'll often need to chain commands together, "piping" the output of one into another as input. This is accomplished using the vertical bar symbol, **|**
+
+- look for the string "needle" in the file "haystack.txt"
+    - `cat haystack.txt | grep needle`
+- sort all occurrences of the string "needle" alphabetically by the first character in the line
+    - `cat haystack.txt | grep needle | sort`
+
+Task
+======
+
+Find all the lines in the file **usgsCodes.csv** that contain the text "Trihalo".
 
 Running a program
 ======
@@ -124,9 +198,18 @@ We can run Python from the command line, since it comes preinstalled with our AW
 
 
 ```bash
-
+python
 ```
 
+should bring up a new command prompt. You are now in a python console and your bash commands won't work. But Python code will.
+
+
+```bash
+print 'hello!'
+3 + 4 * 6
+```
+
+`quit()` will return you to the bash terminal.
 
 Getting new programs
 =====

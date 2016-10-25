@@ -1,6 +1,8 @@
 LearnLinux
 ==========
 
+Hastily and crudely pulled from [Matthew Vander Hoff's tutorial](https://github.com/vanderh0ff/LearnLinux).
+
 This is my attempt at making an open course that everyone can use to teach friends and colleagues how to learn linux
 
 I want this to be a fun course that isn't intimidating while providing useful
