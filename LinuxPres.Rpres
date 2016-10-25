@@ -1,0 +1,130 @@
+LinuxPres
+========================================================
+author: 
+date: 
+
+```{r, include = FALSE}
+library(knitr)
+opts_chunk$set(eval = FALSE)
+opts_chunk$set(engine = "bash")
+```
+
+
+What is Linux
+========================================================
+- Just another operating system.
+    - Made by Linus Torvalds ("Lin" as in Linus)
+    - based on Unix OS ("ux" as in Unix)
+- Open source/free
+- Widely used on servers
+- Has graphical interface, but often used mainly from CLI
+
+
+Why might I need Linux?
+========================================================
+
+- Interacting with computing cluster (e.g., AWS, GHPCC)
+- Using software only available for Linux 
+- Economy (it's free!)
+- Hacker street cred
+
+Basics - file structure
+========================================================
+Log into your AWS instance, and try the command below.
+```{r, eval=FALSE}
+pwd
+```
+This stands for "Print Working Directory," it gives the name of the folder (directory in Linux jargon) you are currently in.
+
+Basics - file structure
+========================================================
+What directories exist by default?
+
+- The root directory, known only as /
+  - This is where everything on the computer is stored
+- /tmp, for temporary files. The contents of this directory is deleted after a reboot!
+- /usr, programs installed here, often in subdirectories.
+
+
+All of these begin with "/", because they are subdirectories of root.
+
+Unless you are installing something, you won't have to worry about these.
+
+Basics - file structure 
+========================================================
+Your **home folder** is where most of your work is done. In here, you can create files, edit and execute them without Linux complaining.
+
+Just like **/** is the shorthand for root, **~** means your home directory.
+
+Navigating
+========================================================
+You can move around between these directories using the **cd** (as in "change directory") command. Try this:
+
+```{r, eval=FALSE}
+cd /usr/bin
+```
+
+The argument for this command "/usr/bin" is called a **path**. Paths are the location directories or files on the computer. This means we are in **bin** inside **/usr**.
+To see what's in here use this command:
+```{r, eval=FALSE}
+ls
+```
+You will see a list of all files and subdirectories in /usr/bin.
+
+Go home 
+=====
+
+To navigate back to your home folder, you can do 
+```{r}
+
+cd ~
+```
+
+but just `cd` with nothing after it works too.
+
+**~** is a special nickname for the home directory. Other special nicknames include 
+
+- **..** for the parent directory
+- **.** for the current directory
+- **-** for the previous directory
+
+wget
+=========
+
+The `wget` command pulls a file from a server (like on the internet)
+
+```{r}
+wget
+```
+
+The following URL links to the GRiD constitution: http://tinyurl.com/hm6qcpf
+
+To download it to your current 
+
+File permissions
+=====
+
+Files can be *read*, *written*, and/or *executed*. Not every user can do all these things to every file. 
+
+To see the permissions for a file, type `ls -l [that file]`.
+
+```{r, engine = "bash"}
+ls -l
+
+```
+
+
+
+
+Running a program
+======
+We can run Python from the command line, since it comes preinstalled with our AWS instance. 
+
+```{r}
+
+```
+
+
+Getting new programs
+=====
+Linux programs (*packages*) can be obtained using a package management tool. For Ubuntu (the linux distribution you're using), the package manager is called **apt**. The two most important commands are **apt-get** and **apt-update**. 
