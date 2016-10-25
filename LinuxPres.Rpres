@@ -97,9 +97,9 @@ The `wget` command pulls a file from a server (like on the internet)
 wget
 ```
 
-The following URL links to the GRiD constitution: http://tinyurl.com/hm6qcpf
+The following URL links to a csv file with US Geological Survey parameter codes: http://bit.ly/2eA7j2p
 
-To download it to your current 
+To download it to your current working directory, use `wget http://bit.ly/2eA7j2p`
 
 File permissions
 =====
