@@ -1,6 +1,6 @@
 ---
 title: "Linux Workshop"
-author: "Mark Hagemann"
+author: "Mark Hagemann, Oliver Spiro"
 date: "October 26, 2016"
 output: 
   ioslides_presentation:
@@ -267,7 +267,7 @@ Linux programs (*packages*) can be obtained using a package management tool. For
 
 ## Process termination exercise
 
-1. `wget` the following file 
+1. `wget` the following file: http://bit.ly/2dXDYfy
 2. `mv` it to have the name "blabber.sh"
 3. `chmod` permissions so you can execute it.
 4. Run it using `./blabber.sh &` (note the ampersand)
