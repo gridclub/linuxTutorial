@@ -5,13 +5,27 @@ date: "October 26, 2016"
 output: 
   ioslides_presentation:
     incremental: true
+    keep_md: true
 ---
 
 
 ```{r, include = FALSE}
 library(knitr)
+library(DT)
 opts_chunk$set(eval = FALSE)
-opts_chunk$set(engine = "bash")
+# opts_chunk$set(engine = "bash")
+```
+
+```{r, eval = FALSE, echo = FALSE}
+# Run this chunk in an interactive session to regenerate moretools.csv from
+# Google sheet.
+
+library(googlesheets)
+sheet <- gs_title("GNU/Linux tools")
+sheetdata <- gs_read(sheet)
+print(sheetdata)
+write.csv(sheetdata, "moretools.csv", row.names = FALSE)
+
 ```
 
 
@@ -91,7 +105,7 @@ You will see a list of all files and subdirectories in /usr/bin.
 ## Go home 
 
 To navigate back to your home folder, you can do 
-```{r}
+```{r, eval = FALSE}
 
 cd ~
 ```
@@ -117,7 +131,7 @@ Section 2: file manipulation
 
 The `wget` command pulls a file from a server (like on the internet)
 
-```{r}
+```{r, eval = FALSE}
 wget
 ```
 
@@ -143,13 +157,27 @@ The `-l` is an option given to the `ls` command, telling it to list files in *lo
 The **chmod** function sets permissions for a specified file.
 
 - There are 3 permissions (read, write, execute)
-    - encoded as 3-digit binary converted to integer, for example:
-        - (*read* and *write* and *execute*) = (111) = 7
-        - (*not read* and *write* and *not execute*) =  (010) = 2
-- There are 3 user categories that can have permissions: owner, group, all
-    - Smash the 3 permission integers together, for example:
-        - `chmod 777 [filename]` gives everyone read, write, and execute permissions
-        - `chmod 744 [filename]` gives the owner read, write, and execute permissions, but everyone else can only read.
+   -denoted by r, w, x
+-There are three categories that can have permissions: user, group, other
+   -"user" is the files owner, "group" refers to other members of a specific group of users, and "other" is anyone else.
+
+To set these permissions, you can simply run the command *chmod <permissions> <file>* where <file> the specified file, and <permissions> is a pattern like the below:
+
+-To give the file's owner execute permission, **chmod u+x <file>**
+-To remove write access for people in the category "other", **chmod o-x <file>**
+-To give full permissions to everyone on the system, **chmod ugo+rwx <file>**
+
+## Changing file permissions, continued
+
+The previous slide showed one way to set file permissions. Here is another.
+
+- Permissions can be encoded as 3-digit binary converted to integer, for example:
+    - (*read* and *write* and *execute*) = (111) = 7
+    - (*not read* and *write* and *not execute*) =  (010) = 2
+- To set the 3 permissions for the 3 user categories smash the 3 permission integers together into one 3-digit integer. For example:
+    - `chmod 777 [filename]` gives everyone read, write, and execute permissions
+    - `chmod 744 [filename]` gives the "user" read, write, and execute permissions, but everyone else ("group" and "other") can only read.
+
 
 ## Making files--3 ways
 
@@ -167,7 +195,7 @@ The **chmod** function sets permissions for a specified file.
 - change the permissions to make it executable
 - Using `nano`, put the following text in the file:
 
-```{r}
+```{r, eval = FALSE}
 #! /bin/bash
 export OLDPS=$PS1
 export PS1="GRiD_"$OLDPS
@@ -224,13 +252,13 @@ Section 4: Packages and processes
 
 We can run Python from the command line, since it comes preinstalled with our AWS instance. 
 
-```{r}
+```{r, eval = FALSE}
 python
 ```
 
 should bring up a new and different command prompt. You are now in a python console and your bash commands won't work. But Python code will.
 
-```{r}
+```{r, eval = FALSE}
 print 'hello!'
 3 + 4 * 6
 ```
@@ -244,7 +272,7 @@ Linux doesn't let just anybody play around with its guts. Only someone with root
 - Playing around with Linux guts is dangerous and can harm your machine.
 - But you can run a command as a super user by prepending it with `sudo`. 
 
-```{r}
+```{r, eval = FALSE}
 touch /this # doesn't work
 sudo touch /this # works
 ```
@@ -290,11 +318,12 @@ Function documentation
     - e.g. `python -h`
 - Google, stackexchange
 
-## Other functions and things to learn about on your own
+## Other utilities and things we like
 
+```{r, echo = FALSE, eval = TRUE}
+moretools <- read.csv("moretools.csv")
+datatable(moretools, height = 300, 
+          # options = list(pageLength = 5))
+          options = list(scrollY = 300, paging = FALSE))
+```
 
-|function|what it does|
-|-------|----------|
-| sed | text manipulation |
-| regex | computer language for matching strings of text |
-| rsync | intelligent file transfer/syncing|
